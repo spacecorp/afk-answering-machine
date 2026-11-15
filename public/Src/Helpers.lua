@@ -81,7 +81,7 @@ end
 local function getCharacterinfo(target)
     local genderTable = { "neuter or unknown", "male", "female" };
     local playerClass, englishClass, classIndex = UnitClass(target);
-    local name, upName, level = UnitName(target)
+    local name, serverName = UnitFullName(target)
     local unitLevel = UnitLevel(target)
     local gender = genderTable[UnitSex(target)]
     local race, raceEn = UnitRace(target);
@@ -91,7 +91,7 @@ end
 
 
 function AFKAnsweringMachine.Helpers.GetTargetInformation()
-  if(UnitName("target")) then
+  if(UnitFullName("target")) then
         return getCharacterinfo("target")
     end
 
@@ -100,8 +100,9 @@ end
 
 function AFKAnsweringMachine.Helpers.GetTargetInformationByUID(uid)
   local genderTable = { "neutral or unknown", "male", "female" };
-  local targetClass, engClass, targetRace, engRace, gender, targetName, server = GetPlayerInfoByGUID(uid)
+  local targetClass, engClass, targetRace, engRace, gender, _, server = GetPlayerInfoByGUID(uid)
   local targetGender = genderTable[UnitSex(uid)]
+  local targetName, serverName = UnitFullName(target)
 
   return targetName, targetGender, targetClass, targetRace
 end
