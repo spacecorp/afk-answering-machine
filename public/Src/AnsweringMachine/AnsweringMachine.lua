@@ -64,6 +64,8 @@ function AFKAnsweringMachine.AnsweringMachine.GetMessage(
         local oppositeSex = "guys"
     end
 
+    local isForever = (WOW_PROJECT_ID == (WOW_PROJECT_CAMELOT or 18))
+
     local answeringMachineLines = {
         "You have reached your daily whisper limit to ${playerName}. Try again tomorrow.",
         "Please insert more gold before you can message ${playerName} again.",
@@ -152,6 +154,10 @@ function AFKAnsweringMachine.AnsweringMachine.GetMessage(
         "I’m currently resting at the local tavern. Leave your quest details after the beep, and I shall review them upon my return.",
         "Still unpacking all my loot from my last raid. (Who am I kidding, i'm sulking over another duplicate drop...)"
     }
+
+    if isForever then
+        table.insert(answeringMachineLines, "Being afk, FOREVER!")
+    end
 
     
     if (playerRace == Race.Haranir) then
@@ -249,13 +255,12 @@ function AFKAnsweringMachine.AnsweringMachine.GetMessage(
             "Hello, this is ${playerName}' toaster. ${playerName}' new answering machine is in the shop for repairs, so please leave your message when the toast is done… (Cachunk!)")
     end
 
-    if (playerRace == "Earthen" or "Dark Iron Dwarf" or "Dwarf") then
+    if (playerRace == Race.Earthen or playerRace == Race.DarkIronDwarf or playerRace == Race.Dwarf) then
         table.insert(answeringMachineLines,
             "Hello, this is ${playerName}. I'm currently busy mining for gold. Leave a message and I'll get back to you once I've struck it rich!");
-        table.insert(answeringMachineLines, "");
     end
 
-    if (playerClass == "Goblin") then
+    if (playerRace == Race.Goblin) then
         table.insert(answeringMachineLines,
             "Too busy counting my money. Goodbye. *click*")
         table.insert(answeringMachineLines,
