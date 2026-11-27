@@ -70,6 +70,7 @@ function AFKAnsweringMachine.AnsweringMachine.GetMessage(
         "You have reached your daily whisper limit to ${playerName}. Try again tomorrow.",
         "Please insert more gold before you can message ${playerName} again.",
         "*automated voice*: YOU RANG!!!????",
+        "Cannot talk, currently going into a tunnel!",
         "Cannot record message, tape full, BEEPGKRRFCC",
         "Leave your message after the shriek. *shriek*",
         "AFK, Getting longdrink, will be back in an unrealistic amount of minutes.", -- SilverNL, Talnivarr, EU
@@ -157,6 +158,12 @@ function AFKAnsweringMachine.AnsweringMachine.GetMessage(
 
     if isForever then
         table.insert(answeringMachineLines, "Being afk, FOREVER!")
+    end
+
+    if (playerClass == Race.Hunter) then
+        table.insert(answeringMachineLines, "Hello, I'm currently in the Wetlends, trying to get rid of the non-native species here. Look, a Goldshire Python YOINK!")
+        table.insert(answeringMachineLines, "Hello, I'm currently in the Swamp of Sworrows, trying to find an anaconda. Hey a Red Panda. BOOP!")
+        table.insert(answeringMachineLines, "Hello, I'm currently in the Wetlands, I love this crocodile! BOOP!")
     end
 
     
