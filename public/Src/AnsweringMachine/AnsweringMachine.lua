@@ -490,7 +490,9 @@ end
 
 function AFKAnsweringMachine.AnsweringMachine.run()
     local prefix = "[Answering Machine]: "
-    if (UnitIsAFK("player")) then
+    local unitIsAfk = UnitIsAFK("player")
+    if AFKAnsweringMachine.RandomizeUtil.IsSecret(isAFK) then return end
+    if (unitIsAfk) then
         local playerName, playerGender, playerClass, playerRace, playerLevel = AFKAnsweringMachine.Helpers
             .GetPlayerInformation()
 
@@ -516,4 +518,5 @@ function AFKAnsweringMachine.AnsweringMachine.run()
             print(AFKAnsweringMachineMessageColor .. 'Message set to: \124r\124cffffcee2' .. answeringMachineLine)
         end
     end
+
 end

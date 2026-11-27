@@ -3,6 +3,13 @@ AFKAnsweringMachine.RandomizeUtil = {}
 
 local contextStates = {}
 
+function AFKAnsweringMachine.RandomizeUtil.IsSecret(value)
+    if not (issecretvalue or canaccessvalue) then return false end
+    if issecretvalue then return issecretvalue(value) end
+    if canaccessvalue then return not canaccessvalue(value) end
+    return true -- default for safety
+end
+
 -- Get a randomized item from a data table with intelligent cycling
 -- @param contextKey - unique identifier (e.g., "compliment_prefix", "flirt_message")
 -- @param dataTable - array to pick from
